@@ -1,0 +1,61 @@
+version: "3.8"
+
+services: 
+    jtl-shop:
+        image: jtl-shop
+        build: 
+            context: ./docker/web
+            args:
+                PHP_VERSION: "${PHP_VERSION}"
+                JTL_VERSION: "${JTL_VERSION}"
+                TZ: Europe/Berlin
+        ports: 
+            - "80:80"
+        depends_on: 
+            - "jtl-db"
+            - "jtl-redis"
+        volumes:
+            # JETZT RICHTIG: Der Code wird in deinen lokalen Ordner "./src" gespiegelt
+            - ./src:/var/www/html
+            - ./docker/web/php.ini:/usr/local/etc/php/php.ini
+            - ./docker/web/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+        user: "${UID}:33"
+    jtl-db:
+        image: mariadb:10.11
+        ports: 
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+            MYSQL_USER: "${MYSQL_USER}"
+            MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+            TZ: "Europe/Berlin"
+            MYSQL_DATABASE: "${MYSQL_DATABASE}"
+        volumes: 
+            - jtl_db:/var/lib/mysql
+
+    jtl-redis:
+        image: redis:7-alpine
+        ports:
+            - "6379:6379"
+        volumes:
+            - jtl_redis:/data
+
+    phpmyadmin:
+        image: phpmyadmin
+        ports: 
+            - "8080:80"
+        environment: 
+            PMA_HOST: jtl-db
+            TZ: "Europe/Berlin"
+        depends_on: 
+            - "jtl-db"
+
+    mail:
+        image: maildev/maildev
+        ports:
+            - "1080:1080"
+
+volumes: 
+    jtl_db:
+    jtl_redis:
+    # Das Named Volume für den Shop fliegt hier raus!

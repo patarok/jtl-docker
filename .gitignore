@@ -1,0 +1,112 @@
+# ============================================================
+# ENVIRONMENT & SECRETS
+# ============================================================
+.env
+.env.*
+!.env.example
+
+# ============================================================
+# JTL-SHOP SOURCE (runtime-populated by entrypoint)
+# Ignore all core shop files, keep only project-specific content
+# ============================================================
+src/*
+!src/plugins/
+src/plugins/**
+!src/plugins/**
+!src/templates/
+src/templates/**
+!src/templates/**
+!src/mediafiles/
+src/mediafiles/**
+!src/mediafiles/**
+!src/build.sh
+!src/README.md
+!src/README*
+# Uncomment if you manage downloads via git:
+# !src/downloads/
+# src/downloads/**
+# !src/downloads/**
+
+# ============================================================
+# JETBRAINS IDEs (PhpStorm, IntelliJ, WebStorm, etc.)
+# ============================================================
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/**/mongoSettings.xml
+.idea/replstate.xml
+.idea/httpRequests
+.idea/caches/build_file_checksums.ser
+atlassian-ide-plugin.xml
+cmake-build-*/
+.idea_modules/
+*.iws
+out/
+
+# ============================================================
+# VSCODE
+# ============================================================
+.vscode/
+*.code-workspace
+
+# ============================================================
+# macOS
+# ============================================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# ============================================================
+# WINDOWS
+# ============================================================
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ============================================================
+# LINUX
+# ============================================================
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================================
+# LOGS & TEMP FILES
+# ============================================================
+*.log
+*.tmp
+*.temp
+*.cache
+/tmp/
